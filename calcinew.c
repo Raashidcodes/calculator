@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-// Function declarations
-//to show modification
+/* Function declarations */
 void menu();
 double add(double a, double b);
 double subtract(double a, double b);
@@ -11,6 +10,7 @@ double divide(double a, double b);
 double power(double a, double b);
 double squareroot(double a);
 double logarithm(double a);
+double modulo(double a, double b);
 
 int main() {
     int choice;
@@ -43,10 +43,10 @@ int main() {
             case 4:
                 printf("Enter two numbers: ");
                 scanf("%lf %lf", &a, &b);
-                if (b != 0)
-                    printf("Result = %.2lf\n", divide(a, b));
+                if (b == 0)
+                    printf("Division by zero is not allowed\n");
                 else
-                    printf("Error: Division by zero\n");
+                    printf("Result = %.2lf\n", divide(a, b));
                 break;
 
             case 5:
@@ -58,50 +58,59 @@ int main() {
             case 6:
                 printf("Enter a number: ");
                 scanf("%lf", &a);
-                if (a >= 0)
-                    printf("Result = %.2lf\n", squareroot(a));
+                if (a < 0)
+                    printf("Square root of negative number not allowed\n");
                 else
-                    printf("Error: Square root of negative number\n");
+                    printf("Result = %.2lf\n", squareroot(a));
                 break;
 
             case 7:
                 printf("Enter a number: ");
                 scanf("%lf", &a);
-                if (a > 0)
-                    printf("Result = %.2lf\n", logarithm(a));
+                if (a <= 0)
+                    printf("Logarithm of non-positive number not allowed\n");
                 else
-                    printf("Error: Log of non-positive number\n");
+                    printf("Result = %.2lf\n", logarithm(a));
+                break;
+
+            case 8:
+                printf("Enter two numbers: ");
+                scanf("%lf %lf", &a, &b);
+                if (b == 0)
+                    printf("Modulo by zero is not allowed\n");
+                else
+                    printf("Result = %.2lf\n", modulo(a, b));
                 break;
 
             case 0:
-                printf("Calculator exited.\n");
+                printf("Exiting program...\n");
                 break;
 
             default:
-                printf("Invalid choice! Try again.\n");
+                printf("Invalid choice\n");
         }
 
         printf("\n");
-
     } while (choice != 0);
 
     return 0;
 }
 
-// Menu function
+/* Menu function */
 void menu() {
-    printf("===== ADVANCED CALCULATOR =====\n");
+    printf("===== Calculator Menu =====\n");
     printf("1. Addition\n");
     printf("2. Subtraction\n");
     printf("3. Multiplication\n");
     printf("4. Division\n");
-    printf("5. Power (a^b)\n");
+    printf("5. Power\n");
     printf("6. Square Root\n");
-    printf("7. Logarithm (ln)\n");
+    printf("7. Logarithm\n");
+    printf("8. Modulo\n");
     printf("0. Exit\n");
 }
 
-// Operation functions
+/* Function definitions */
 double add(double a, double b) {
     return a + b;
 }
@@ -128,4 +137,8 @@ double squareroot(double a) {
 
 double logarithm(double a) {
     return log(a);
+}
+
+double modulo(double a, double b) {
+    return fmod(a, b);
 }
