@@ -2,6 +2,7 @@
 #include <math.h>
 
 // Function declarations
+//to show modification
 void menu();
 double add(double a, double b);
 double subtract(double a, double b);
